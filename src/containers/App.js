@@ -1,5 +1,7 @@
-import facebookicon from '../facebook-brand.svg';
-import googleicon from '../google-brand.svg';
+import facebookicon from '../assets/images/facebook-brand.svg';
+import googleicon from '../assets/images/google-brand.svg';
+import './App.scss';
+
 
 function App() {
   return (
