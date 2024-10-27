@@ -1,15 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, useState  } from 'react';
 import facebookicon from '../../assets/images/facebook-brand.svg';
 import googleicon from '../../assets/images/google-brand.svg';
 import './Login.scss';
 
 import {handleLoginApi} from '../../services/userService';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import {login} from '../../redux/authActions';
+
+import { Navigate  } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+
+
+
+
+
 class Login extends Component{
     constructor(props){
         super(props);
         this.state ={
             email: '',
             password: '',
+            errMessage:'',
+            login: false,
         }
     }
 
@@ -32,14 +47,43 @@ class Login extends Component{
     handleLogin= async()=>{
 
 
-        console.log(this.state);
+        this.setState({
+            errMessage:'',
+        })
 
        try{
-        await handleLoginApi(this.state.email, this.state.password);
+        let resData=await handleLoginApi(this.state.email, this.state.password);
+        console.log(resData)
+        
+        if(resData && resData.data.errCode !==0){
+            this.setState({
+                errMessage: resData.data.message
+            })
+
+        }
+        if(resData && resData.data.errCode===0){
+            console.log('User is authenticated, redirecting...');
+            this.setState({
+                login: true
+            })
+            
+
+        }
+
+       
         
 
-       }catch(e){
-        console.log(e);
+       }catch(error){
+
+        
+        if(error.response){
+            if(error.response.data){
+                this.setState({
+                    errMessage: error.response.data.messsage
+                })
+            }
+        }
+        
        }
         
     }
@@ -47,6 +91,10 @@ class Login extends Component{
 
 
     render(){
+
+        if (this.state.login) {
+            return <Navigate to="/home" />;  // Redirect to the home page
+          }
 
         return(
 
@@ -69,6 +117,12 @@ class Login extends Component{
                     <input type="password" className="form-control mb-2" placeholder="Enter password"
                     onChange={(e)=> this.handleOnchangePassword(e)}
                     value={this.state.password}></input>
+
+                    </div>
+
+                    <div className='errorMessage col-12 text-center'>
+                        
+                        {this.state.errMessage}
 
                     </div>
                     <div className=" col-12 text-center">
@@ -101,5 +155,17 @@ class Login extends Component{
     }
 }
 
-export default Login;
+// const mapDispatchToProps = dispatch=>{
+//     return{
+//         userLoginSuccess:()=>dispatch(actions.userLoginSuccess(userInfo))
+//     }
+// }
+
+
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    error: state.auth.error,
+  });
+
+  export default connect(mapStateToProps, { login })(Login);
 

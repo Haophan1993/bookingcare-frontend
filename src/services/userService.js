@@ -9,9 +9,13 @@ const handleLoginApi = (userEmail, userPassword)=>{
 
 }
 
+const getAllUsers = (inputId)=>{
+    return axios.get(`http://localhost:8080/api/get-all-users?id=${inputId}`);
+}
+
 export{
 
-    handleLoginApi
+    handleLoginApi, getAllUsers
 }
 
 
