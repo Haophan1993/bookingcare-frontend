@@ -16,6 +16,8 @@ const getAllUsers = (inputId)=>{
 const deleteUserById = (userId)=>{
 
     return axios.get(`http://localhost:8080/delete-crud?id=${userId}`);
+    
+    //return axios.delete(`http://localhost:8080/api/delete-user?id=${userId}`);
 
 };
 

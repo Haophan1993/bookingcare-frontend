@@ -2,13 +2,15 @@ import { Component } from "react";
 import './UserManage.scss';
 
 import {getAllUsers, deleteUserById} from '../../services/userService';
+import ModalUser from "./ModalUser";
 
 
 class UserManage extends Component {
     constructor(props) {
       super(props);
       this.state={
-        users:[]
+        users:[],
+        isOpenModalUser:false
         
       }
       
@@ -32,7 +34,8 @@ class UserManage extends Component {
     }
 
     async hanleDelete(userId){
-      console.log('Click me', userId)
+      console.log(userId)
+      
       await deleteUserById(userId);
 
       let response = await getAllUsers('ALL');
@@ -51,6 +54,18 @@ class UserManage extends Component {
       
       
     }
+
+    handleAddNewUser=()=>{
+      this.setState({
+        isOpenModalUser:true
+      })
+    }
+
+    toggleUserModal = ()=>{
+      this.setState({
+        isOpenModalUser: !this.state.isOpenModalUser,
+      })
+    }
     
     render() {
 
@@ -58,7 +73,13 @@ class UserManage extends Component {
       let users= this.state.users;
       return (
         <div className="users-container">
+          <ModalUser isOpen={this.state.isOpenModalUser}
+                      toggleFromParent={this.toggleUserModal}/>
             <div className="title text-center">Manage users</div>
+            <div className="mx-1">
+              <button className="btn btn-primary" onClick={()=>this.handleAddNewUser()}>Add new User</button>
+            </div>
+
             <div className="users-table">
                   <table id="customers">
                     <tr>
