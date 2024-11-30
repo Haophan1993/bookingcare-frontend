@@ -1,7 +1,7 @@
 import { Component } from "react";
 import './UserManage.scss';
 
-import {getAllUsers, deleteUserById} from '../../services/userService';
+import {getAllUsers, deleteUserById, createNewUserService} from '../../services/userService';
 import ModalUser from "./ModalUser";
 
 
@@ -17,6 +17,11 @@ class UserManage extends Component {
     }
 
     async componentDidMount(){
+      await this.getAllUserFromReact();
+
+    }
+
+    getAllUserFromReact = async ()=>{
       let response = await getAllUsers('ALL');
 
       
@@ -30,7 +35,6 @@ class UserManage extends Component {
             })
             
       }
-
     }
 
     async hanleDelete(userId){
@@ -66,6 +70,27 @@ class UserManage extends Component {
         isOpenModalUser: !this.state.isOpenModalUser,
       })
     }
+
+    createNewUser= async (data)=>{
+      try{
+        
+        let reponse= await createNewUserService(data);
+        //console.log(reponse);
+        // rerender user list
+        await this.getAllUserFromReact();
+        // close add new Modal user
+        this.setState({
+          isOpenModalUser:false
+        })
+
+        // clear data for ModalUser here
+
+      }catch(e){
+        console.log(e)
+
+      }
+      
+    }
     
     render() {
 
@@ -74,7 +99,8 @@ class UserManage extends Component {
       return (
         <div className="users-container">
           <ModalUser isOpen={this.state.isOpenModalUser}
-                      toggleFromParent={this.toggleUserModal}/>
+                      toggleFromParent={this.toggleUserModal}
+                      createNewUser={this.createNewUser}/>
             <div className="title text-center">Manage users</div>
             <div className="mx-1">
               <button className="btn btn-primary" onClick={()=>this.handleAddNewUser()}>Add new User</button>
@@ -92,16 +118,16 @@ class UserManage extends Component {
                     </tr>
                     {users&&users.map((item, index)=>{
                       return(
-                        <tr id={item.id}>
+                        <tr key={item.id}>
                             <td>{item.email}</td>
                             <td>{item.firstName}</td>
                             <td>{item.lastName}</td>
                             <td>{item.address}</td>
                             <td>
-                              <button type="button" class="m-2 btn btn-primary">Edit</button>
-                              <button type="button" class="m-2 btn btn-primary" onClick={e=>this.hanleDelete(item.id)}>Delete</button>
+                              <button type="button" className="m-2 btn btn-primary">Edit</button>
+                              <button type="button" className="m-2 btn btn-primary" onClick={e=>this.hanleDelete(item.id)}>Delete</button>
                             </td>
-                      </tr>
+                        </tr>
 
                       )
 
