@@ -72,3 +72,57 @@
     }
 
 }
+
+.home-header-banner{
+    background: url('./images/header-backgroup.jpg');
+    height: 450px;
+    background-size: contain;
+    padding: 15px 0;
+    text-align: center;
+    
+    
+    
+    
+
+    .title1{
+        font-size: 30px;
+        color: aliceblue;
+        text-align: center;
+        text-shadow: 1px 1px 1px #333;
+        margin-bottom: 15px;
+    }
+    
+    .title2{
+        font-size: 20px;
+        color: aliceblue;
+        text-align: center;
+        text-shadow: 1px 1px 1px #333;
+        margin-bottom: 15px;
+    }
+    .search{
+        display: inline-flex;
+        background-color: orange;
+        height: 75px;
+        align-items: center;
+        border-radius: 25px;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+        .searchIcon{
+            height: 25px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .input-text{
+            height: 30px;
+            width: 300px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
+
+
+    }
+    
+}
+

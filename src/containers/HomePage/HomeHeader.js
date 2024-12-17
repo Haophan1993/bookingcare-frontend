@@ -3,6 +3,7 @@ import './HomeHeader.scss';
 import bars from './images/bars-solid.svg'
 import logo from './images/smart-banner.png'
 import question from './images/circle-question-solid.svg'
+import searchIcon from './images/magnifying-glass-solid.svg'
 
 class HomeHeader extends Component{
     constructor(props){
@@ -11,14 +12,14 @@ class HomeHeader extends Component{
 
     render(){
         return(
-
+            <>
             <div className='home-header-container'>
                 <div className='home-header-content'>
 
                     <div className='left-content'>
-                            <img className='bars' src={bars}></img>
+                            <img className='bars' src={bars} alt='bars'></img>
                             
-                            <img className='header-logo' src={logo}></img>
+                            <img className='header-logo' src={logo} alt='logo'></img>
                     </div>
 
                     <div className='center-content'>
@@ -58,7 +59,7 @@ class HomeHeader extends Component{
 
                     <div className='right-content'>
                             <div className='support'>
-                            <img className='question-mark' src={question} ></img>Ho Tro
+                            <img className='question-mark' src={question} alt='questionIcon' ></img>Ho Tro
                             </div>
                             <div className='flag'>
                                 VN
@@ -69,6 +70,46 @@ class HomeHeader extends Component{
                 </div>
 
             </div>
+            <div className='home-header-banner'>
+
+                <div className='content-up'>
+
+                <div className='title1'>
+                    Nen Tang Y Te
+                </div>
+                <div className='title2'>
+                    Cham soc suc khoe toan dien
+                </div>
+
+                <div className='search'>
+                   <div>
+                   <img className='searchIcon' src={searchIcon} alt='searchIcon'></img>
+
+                   </div>
+                    <div>
+                    <input className='input-text' type='text' placeholder='Tim chuyen khoa kham benh'/>
+
+                    </div>
+                    
+
+                    
+                    
+                </div>
+
+                </div>
+                <div className='content-down'>
+                    <div className='options'>
+
+                    </div>
+
+                </div>
+                
+
+                
+
+
+            </div>
+            </>
             
         )
     }
