@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './HomeHeader.scss';
+import './HomeHeader1.scss';
 import bars from './images/bars-solid.svg'
 import logo from './images/smart-banner.png'
 import question from './images/circle-question-solid.svg'
 import searchIcon from './images/magnifying-glass-solid.svg'
+import logoIcon from './images/Logo.png';
 
 class HomeHeader extends Component{
     constructor(props){
@@ -13,7 +14,26 @@ class HomeHeader extends Component{
     render(){
         return(
             <>
-            <div className='home-header-container'>
+
+            <div className='home-header'>
+                <div className='header-left-section'>
+                <div className='bar-container'>
+                    <img className='bar-icon' src={bars} alt='bar-icon'></img>
+                    <img className='logo-icon' src={logoIcon} alt='logo-icon'></img>
+
+                </div>
+                </div>
+                <div className='header-center-section'>
+                    <div className='center-left'>left</div>
+                    <div className='center-midle'>midle</div>
+                    <div className='center-right'>right</div>
+                </div>
+                <div className='header-right-section'>Right</div>
+
+                
+
+            </div>
+            {/* <div className='home-header-container'>
                 <div className='home-header-content'>
 
                     <div className='left-content'>
@@ -108,7 +128,9 @@ class HomeHeader extends Component{
                 
 
 
-            </div>
+            </div> */}
+
+
             </>
             
         )

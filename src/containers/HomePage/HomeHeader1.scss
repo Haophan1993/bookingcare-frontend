@@ -1,0 +1,37 @@
+
+
+.home-header{
+    
+    height: 80px;
+    margin: 0;
+    display: flex;
+    justify-content:  space-between;
+    align-items: center;
+
+    .header-left-section{
+        
+        width: 170px;
+        .bar-icon{
+            width: 20px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+        .logo-icon{
+            width: 120px;
+        }
+    }
+
+    .header-center-section{
+        background-color: lightcoral;
+        flex: 1;
+        display: flex;
+        
+    }
+
+    .header-right-section{
+        background-color: lightblue;
+        width: 150px;
+    }
+
+
+}

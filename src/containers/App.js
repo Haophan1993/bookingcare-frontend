@@ -2,6 +2,7 @@
 
 import Login from './Auth/Login';
 import HomePage from './HomePage/HomePage';
+import './App.scss';
 
 
 
